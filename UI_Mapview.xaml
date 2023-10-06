@@ -1,0 +1,101 @@
+﻿<UserControl x:Class="Chronicle.UI_Mapview"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Chronicle="clr-namespace:Chronicle" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+             mc:Ignorable="d" Loaded="UserControl_Loaded" >
+    <DockPanel LastChildFill="True" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+        <DockPanel DockPanel.Dock="Top" LastChildFill="True" Height="60">
+            <Label x:Name="lSelectedTable" Margin="5,0" Content="(none selected)" DockPanel.Dock="Top" />
+            <Label x:Name="lTimepoint" Content="Date" VerticalAlignment="Center" DockPanel.Dock="Left" Margin="5,0" Visibility="Collapsed"/>
+            <Button x:Name="bPlayPause" Height="24" HorizontalAlignment="Right" VerticalAlignment="Center" DockPanel.Dock="Right" Margin="5,0" Visibility="Collapsed" Click="bPlayPause_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image x:Name="iPlayPause" Stretch="None" VerticalAlignment="Center" Margin="5,2" />
+                    <TextBlock x:Name="tPlayPause" Text="Play" VerticalAlignment="Center" Margin="5,2"/>
+                </StackPanel>
+            </Button>
+            <Slider x:Name="sTimepoint" MinWidth="100" VerticalAlignment="Center" Margin="5,5" Visibility="Collapsed" SmallChange="1" AutoToolTipPlacement="BottomRight" ValueChanged="sTimepoint_ValueChanged" IsSnapToTickEnabled="True"/>
+        </DockPanel>
+        <WrapPanel x:Name="pMultiValueSettings"  DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal">
+                <Label Margin="5,0" Content="Mode" VerticalAlignment="Center" />
+                <ComboBox x:Name="cMultiValueMode" VerticalAlignment="Center" Margin="5" SelectedIndex="0" Width="120" Height="25" SelectionChanged="cMultiValueMode_SelectionChanged" ToolTipService.ShowDuration="12000" >
+                    <ComboBox.ToolTip>
+                        <TextBlock>
+                            You can choose one of the following modes:
+                            <LineBreak />
+                            <LineBreak />
+                            -All keys: The province shade will be the result of combination of all constituent shades;
+                            <LineBreak />
+                            -Top key (uniform): the province shade will equal the shade of the strongest constituent in the province;
+                            <LineBreak />
+                            -Top key (shaded): the same as above but the intensity of the shade depends on the strongest constituent property;
+                            <LineBreak />
+                            -Selected key: only presence of the selected constituent will be displayed, the stronger it is, the more intensive the shade.
+                        </TextBlock>
+                    </ComboBox.ToolTip>
+                    <ComboBoxItem Content="All keys"/>
+                    <ComboBoxItem Content="Top key (uniform)"/>
+                    <ComboBoxItem Content="Top key (shaded)"/>
+                    <ComboBoxItem Content="Selected key"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel x:Name="pMultiValueKeys" Orientation="Horizontal">
+                <Label Content="Key" VerticalAlignment="Center" Margin="5,0" />
+                <ComboBox x:Name="cMultiValueKeys" VerticalAlignment="Center" Margin="5" SelectedIndex="0" Width="120" Height="25" SelectionChanged="cMultiValueMode_SelectionChanged" ToolTipService.ShowDuration="12000" >
+                    <ComboBox.ToolTip>
+                        <TextBlock>
+                            Choose the constituent property to be displayed
+                        </TextBlock>
+                    </ComboBox.ToolTip>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel x:Name="pMultiValueColor" Orientation="Horizontal">
+                <Label Margin="5,0" Content="Color" VerticalAlignment="Center" />
+                <ComboBox x:Name="cMultiValueColor" VerticalAlignment="Center" Margin="5" SelectedIndex="2" Width="120" Height="25" SelectionChanged="cMultiValueMode_SelectionChanged" ToolTipService.ShowDuration="12000" >
+                    <ComboBox.ToolTip>
+                        <TextBlock>
+                            The shade intensity can correspond to the given constituent feature amount vs:
+                            <LineBreak />
+                            <LineBreak />
+                            -Absolute: biggest amount of this or any other feature anywhere in the world;
+                            <LineBreak />
+                            -Absolute (key): biggest amount of this feature anywhere in the world;
+                            <LineBreak />
+                            -Relative (province): sum of all amounts in this province or country.
+                        </TextBlock>
+                    </ComboBox.ToolTip>
+                    <ComboBoxItem Content="Absolute"/>
+                    <ComboBoxItem Content="Absolute (key)"/>
+                    <ComboBoxItem Content="Relative (province)"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel x:Name="pAbsoluteColor" Orientation="Horizontal" Margin="5,0,0,0" >
+                <CheckBox x:Name="cAbsoluteColor" VerticalAlignment="Center" Margin="5" Content="Use key color" Checked="cAbsoluteColor_Checked" Unchecked="cAbsoluteColor_Checked" ToolTipService.ShowDuration="12000" >
+                    <CheckBox.ToolTip>
+                        If checked, the color key will be used, otherwise a default red color will be used which may help in case of low-visibility colors.
+                    </CheckBox.ToolTip>
+                </CheckBox>
+            </StackPanel>
+        </WrapPanel>
+        <Grid>
+            <Grid.LayoutTransform>
+                <TransformGroup>
+                    <TranslateTransform x:Name="MapTranslation"/>
+                    <ScaleTransform x:Name="MapZoom" ScaleX="1" ScaleY="1"/>
+                </TransformGroup>
+            </Grid.LayoutTransform>
+            <xctk:Zoombox x:Name="viewport" KeepContentInBounds="True" Scale="1" MinScale="0.1" MaxScale="10" ViewStackMode="Disabled" 
+                          Cursor="Arrow" ForceCursor="True" CurrentViewChanged="viewport_CurrentViewChanged" PreviewMouseDown="viewport_MouseDown" PreviewMouseMove="viewport_MouseMove" PreviewMouseUp="viewport_MouseUp" AnimationDuration="0:0:0.1" >
+                <Grid>
+                    <Image x:Name="iMap">
+                    </Image>
+                    <Canvas x:Name="cLabels">
+                    </Canvas>
+                </Grid>
+            </xctk:Zoombox>
+        </Grid>
+    </DockPanel>
+</UserControl>

@@ -1,0 +1,25 @@
+﻿<Window x:Class="Chronicle.UI_NewTableScriptSet"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Chronicle"
+        mc:Ignorable="d"
+        Title="Install a new table script" Width="500" SizeToContent="Height" ShowInTaskbar="False" ResizeMode="NoResize">
+    <DockPanel LastChildFill="True">
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+            <Button x:Name="bOK" Content="OK" HorizontalAlignment="Left" Height="25" VerticalAlignment="Center" Width="75" Margin="5" IsDefault="True" Click="bOK_Click"/>
+            <Button x:Name="bCancel" Content="Cancel" HorizontalAlignment="Left" Height="25" VerticalAlignment="Center" Width="75" Margin="5" IsCancel="True" Click="bCancel_Click"/>
+        </StackPanel>
+        <Grid Height="100">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Margin="10,4,0,0">
+                <Button x:Name="bFromFile" Content="From file" Height="24" Click="bFromFile_Click" Width="90"/>
+                <Button x:Name="bFromFolder" Content="From folder" Height="24" Click="bFromFolder_Click" Width="90" Margin="10,0,0,0"/>
+                <Button x:Name="bFromZIP" Content="From archive" Height="24" Click="bFromZIP_Click" Width="90" Margin="10,0,0,0"/>
+            </StackPanel>
+            <Label x:Name="lName" Content="Name" Margin="10,70,431,6"/>
+            <TextBox x:Name="tName" Margin="66,69,10,6" Height="25"/>
+            <Label x:Name="lPath" Content="Path: (not selected)" Margin="10,39,66,36"/>
+        </Grid>
+    </DockPanel>
+</Window>

@@ -1,0 +1,7 @@
+.vs/
+bin/
+obj/
+packages/
+output/
+CEBitmap/obj/
+CEBitmap/bin/

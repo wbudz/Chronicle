@@ -1,0 +1,309 @@
+﻿Version 3.2.4 (2017-06-06)
+- some fixes to startup procedure
+
+Version 3.2.3 (2017-05-22)
+- fixed AAR-file reading bug (crash upon opening AAR file)
+- fixed Vic2 national bank money mode
+- fixed crash on "average best" method in graph creation
+- fixed crash on "Core provinces" map mode (and possibly other rare cases)
+- fixed "invisible" Chad province (made allowance for a typo in the original map definition)
+- added total debt, pops savings, average literacy, consciousness and militancy map modes for Victoria 2
+
+Version 3.2.2 (2017-05-14)
+- support for additional Steam library folders (outside of Program Files folder) added
+- when terrain in a province is overridden with a single value, it is now recognized as such (applies to EU4 and HoI4)
+- better handling of Steam ID lookup (because of changes how Steam stores user id)
+
+Version 3.2.1 (2017-03-05)
+- updated several program dependencies
+- fixed codepage error when reading files
+- fixed duplicated 'Terrain' map mode in menus and possibly other similar errors
+- fixed a lot of non-working CK2 map modes (due to attribute names shortened by one of CK2 patches)
+- added institutions map modes to EU4
+- added tooltips to interface elements showing up for MultiValueTables
+- updated version of Ironmelt decoder included
+
+Version 3.2.0 (2016-10-02)
+- Developer tab redone, with possibility to track script performance and errors
+- script errors have now better presentation and do not break flow of the program
+- better handling of first run (directory structure is automatically created)
+- smaller fixes
+
+Version 3.1.0 (2016-05-20)
+- scripting support redone for better extensibility, performance and more features
+- developer tab has now more options
+- new Ironmelt library included for better CK2/EU4 support
+- some smaller fixes
+
+Version 3.0.5 (2016-04-03)
+- fixed looking for Steam savegames folders
+- savegames can be opened manually from disk in more obvious way
+- changelog should now show up properly when an update is available
+- fixed Steam paths lookup
+
+Version 3.0.4 (2016-03-29)
+- fixed errors when saving AAR files that resulted in some data not being saved (which made the program crash when loading such AAR file)
+- greatly improved performance in displaying maps containing a lot of discrete datakey-based colors (basically, Political map mode)
+- running AAR files by double-click works again
+- some other fixes
+
+Version 3.0.3 (2016-03-27)
+- you can now specify which mods should be loaded along savegames ("Mods" tab in "File" menu)
+- zipped mods are now supported
+- fixed crashes when loading compressed files lacking meta file (Ironmelt may save selected files this way) or having different zipped file name than the one of container
+- fixed mouseover effects when no savegame is loaded
+- some debugging-related fixes
+- fixes for updating mechanism
+
+Version 3.0.2 (2016-03-02)
+- first run experience is now much more friendly
+
+Version 3.0.1 (2016-03-01)
+- fixed a crash due to bad DLL location definition
+
+Version 3.0.0 (2016-02-26)
+- complete rewrite of the program with several structural changes
+- new interface
+- UI more responsive, with far less UI-blocking activities
+- there is no division between 'tables' and 'mapmodes' and every mode can be used for generating maps, tables and graphs
+- underlying mechanisms created for dynamic, user-generated modes - scripts are now compiled on the fly
+- better mod support
+- several new modes added
+- huge amount of minor changes and fixes
+
+Version 2.6.1 (2015-08-03)
+- fixed a crash preventing some games from loading
+
+Version 2.6.0 (2015-08-01)
+- support for Ironman (binary) savegames for Crusader Kings II
+- much faster loading of compressed savegames and much lower RAM usage overall due new parsing libraries being used
+- better checking of changes in monitored folders for saved games during recording, supports now Ironman savegames in CK2 too
+- removed 'region' extension and mapmode which resulted in errors when loading recent version of CK2 
+- several other fixes
+
+Version 2.5.0 (2015-07-20)
+- support for Ironman (binary) savegames for Europa Universalis IV
+- there are now icons signifying whether the savegame file is binary and/or compressed
+- savegame metadata is now acquired in read-only mode (no more file access errors)
+- decoupled some game configuration data so that new changes to game definitions will not need erasing game configuration
+- better checking whether it is safe to read a savegame file
+- a minimum time interval between two savegames can (and should) be specified so that Ironman savegames will not get 'stuck'
+- two new data modes for EU4: province base production and country government rank
+- a lot of other small changes/fixes
+
+Version 2.4.5 (2015-04-12)
+- fixed incorrect language used for some names in EU4-imported savegames
+
+Version 2.4.4 (2015-03-30)
+- fixed errors with importing localization strings (and very long importing of modded games)
+- small changes to logging procedures
+
+Version 2.4.3 (2015-03-28)
+- again, a great deal of fixes to mods support
+- [CEParser] when parsing a savegame, linefeed style is automatically detected
+- fixed crashes with badly defined country or province names
+- fixed a case when "zoom to 100%" button did not work at zoom levels already close to 100%
+- technology map mode in EU4 now is calibrated to dynamically loaded max tech levels
+- added new modes for trade maps in Victoria II to compare trade goods by values (amount*price) as well
+- made fixes and changes to factories maps in Victoria II to monitor factories profitability better
+- added AAR file compression level option, including 'dynamic' setting which compresses files depending on the amount of timepoints recorded (more timepoints, less compression)
+- by default, AAR files are saved with yet lower compression (almost no difference in size, noticeable difference in speed on larger series)
+- when saving AAR file, file tables are not unnecessarily moved to temp folder, this saves up to a couple of seconds
+- in case of loading AAR files, files are extracted to tables folder first which decreases amount of file operations later
+- advanced mod support from 2.4.1 is brought to CK2 and earlier games as well
+- it is now possible to add (import / record) savegames to previously loaded AAR file without a crash
+- time-consuming operations moved to separate threads with async/await model - interface should no longer get blocked
+- interface fixes
+
+Version 2.4.2 (2015-03-25)
+- fixed one crash that may occur when importing a savegame
+- exceptions during importing process should now be handled properly
+- fixed Ironman save detection for CK2
+
+Version 2.4.1 (2015-03-22)
+- completely redone mods handling routines with a lot of bugs resolved
+- dynamic nations (colonial governments) are now supported for Europa Universalis IV
+- fixed missing colors for GIF files in political map mode
+- fixed color gradients not refreshing when first clicked on a map mode that uses them
+- several interface fixes for graphs display
+- it is now possible to edit colorscales through the interface (for now, without save function)
+- added more functionality to exponential colorscales; by defining negative exponent it is now possible to make high values stand out more
+- multivalue maps selected key mode received 'absolute colorscale' switch
+- pre-CK2 games no longer get incorrect Ironman save warning
+- added interface scheme option (default scheme set to 'Grey')
+- map modes get additional RenderEmptyProvinces switch - most of map modes should render uncolonized provinces with 'empty' grey color
+
+Version 2.4.0 (2015-03-19)
+- added support for Europa Universalis IV
+- changed the way GIF animations are described - with additional configuration options
+- a few colors are now fixed for GIF generation (water color included) and they will not be eliminated by nearest-matching algorithm
+- Steam cloud folder is now monitored too (although at this point no savegames will get imported as they are in binary format for cloud uploads)
+- color randomization routine (for map modes like regions or cultures) has been improved and generates now more divergent colors
+- progress of opening, saving files and exporting to GIF files is now shown much better so the program does not appear to 'hang' for bigger data sets
+- internal ZIP compression level settings is now honored; working with AAR files will be slightly faster due to this
+- fixed some quirks with importing games from Steam
+- fixed tab character handling in CEParser
+- improved routine reading game date from savegame file
+- savegame parsing errors will now be reported to the user
+- fixed generating PNG from 'visible portion of the map'
+- when games are being recorded 'Export to animated' button should now turn active
+- several interface modifications and fixes
+
+Version 2.3.2 (2015-03-13)
+- fixed licensing issue with Xceed DataGrid component
+- added handling mechanism for otherwise unhandled exception (should solve silent crashes of the program)
+
+Version 2.3.1 (2015-02-11)
+- fixed crashes when importing an additional savegame
+- fixed Vic2 Railroads map mode colorscale
+
+Version 2.3.0 (2015-02-08)
+- stats tables now use a new component, Xceed DataGrid for better functionality and performance
+- rewrote major part of graph creation routines, lots of bugs fixed
+- datakeys labels are now saved in AAR files
+- about 15 new modes added to Crusader Kings II
+- about 25 new modes added to Victoria II
+- fixed errors in several Victoria II tables
+- optimizations made to speed up multiple value tables parsing (including text tables), about 8-10x parsing time decrease for tables of this kind
+- optimizations added to most of tables thanks to prepopulated country and province nodes lists
+- it is now possible to specify stats display precision
+- fixed color gradient changing its place to the bottom of the right-side panel
+- cultures mapmode in Crusader Kings II now uses pre-defined colors, a lot of other fixes to map colors
+- dialogs now follow system theming
+- multivalue datakey choices are now properly refreshed when a new map mode is loaded
+- some fixes to multivalue tables logic
+- when a colorscale is missing, the program reverts properly to the black-white scale
+- fixed minor icon glitches, added 24x24 icon size
+- update procedure has been made more error-proof
+
+Version 2.2.1 (2015-01-13)
+- multiple optimizations done to speed up map display; changing map mode / time point is about 10x faster than before
+- removed empty timer which could make the program eat whole processor time of a single core
+- few minor fixes
+
+Version 2.2.0 (2015-01-12)
+- added full support for Hearts of Iron III: Their Finest Hour (as a separate game) to enable running TFH mods
+- updated most of external libraries to the newest versions
+- removed bugged and confusing Table management window and Tablesets dropdown button
+- added Import savegame function (which adds a savegame to the currently loaded data as a next timepoint)
+- visual update to several map modes for better usability / visual style
+- it is now possible to display a graph without explicitly generating a table beforehand
+- before initializing a new game, an old one is unloaded first; this solves crash when switching between games
+- fixed crashes with text-based map modes, especially country/province flags
+- fixed errors with displaying labels for some text-based modes
+- fixed crash when displaying stats table for a multivalue table that does not have datakeys labels (e.g. core provinces, CoT control, etc.)
+- if new game data is entered in Game management window and the window is closed without clicking [Add new], user is asked whether to add a new game
+- for map modes that react on click (e.g. core provinces depending on the current country), the current country will not change when merely scrolling (click-and-drag)
+- two new multivalue map modes added to Victoria II
+- the program has a new icon :)
+- a lot of other fixes
+
+Version 2.1.0 (2015-01-05)
+- the program no longer uses game cache when loading savegames; every time data is loaded directly from game files
+- some internal mechanisms of tables parsing completely redone
+- added support for flexible multivalue tables (stats+mapmodes)
+- added support for "advanced" view for tables (suitable as a pivot table source), compatible with multivalue tables
+- logging is now properly thread-safe; added an internal setting to specify logging interval
+- CSV files will no longer end with an empty column
+- CSV files will use a proper current system culture delimiter as well as decimal separator
+- added an internal setting to override CSV delimiter
+- displaying a graph should no longer crash the program (wrong date format was used)
+- fixed a bug when colorscales under a minimap didn't show up when first map mode was selected after loading a savegame
+- added a lot of functionalities to Table management window; preliminary support for switching tablesets
+- redone working directories scheme; changed [Cache] folder to [TablesCache] and [Games] folder to [DefsCache]
+- removed Advanced tab from options
+- duplicated savegames (e.g. from the game folder and Documents folder) will be shown as one entry
+- all province labels are now kept in memory
+- the program checks on startup if it is already running, in this case it stops
+- a lot of various other fixes
+
+Version 2.0.1 (2014-12-02)
+- the program no longer fails to load the countries in Victoria II (due to "dynamic_tags" field)
+- fixed some problems with countries borders displayed around lakes
+- date caption in GIF files is no longer distorted if GIF size is reduced
+- time slider should now be visible immediately after data is recorded, not only upon reloading AAR file
+
+Version 2.0.0 (2014-11-15)
+- total rewrite of the program
+- support for Crusader Kings II added
+- several performance improvements 
+- several important changes to UI
+- now uses modern look of Fluent Ribbon
+- export to animated GIF added
+- added a lot of new options
+
+Version 1.5.1 (2014-07-27)
+- several fixes for games management window
+- countries.txt file in Victoria II is now parsed properly
+- an error in common\countries\USA.txt with "battleship" section is ignored by default
+- fixed province population colorscale assignment
+- [Parser] there is now a switch to ignore delimiter alignment errors
+
+Version 1.5.0 (2014-07-24)
+- full support for Victoria II
+- preliminary support for animated GIFs (debug mode only)
+- numerous fixes for the core provinces mode
+- 64-bit fixed-precision numbers are now supported for data retention
+- aggregating tables supported for faster and easier parsing
+- the program now uses single minimap for all the games
+- cut about 0.1s from each map generation due to better algorithm and multithreading
+- it is now possible to use more natural color definition (by RGB values) in colorscales file
+- if for some mapmode min value = max value, then the color set for min value will be displayed
+- numerous other fixes
+
+Version 1.3.0 (2014-06-24)
+- additional map modes for HoI3: factions and ideologies
+- fixed generation of country flags table (fixes crashes and shifting flags by one country)
+- further comprehensive fixes for stats generation
+
+Version 1.2.1 (2014-06-09)
+- fixed crashes with table generation out of uncached data table
+- fixed crashes with cutting out one row/column too much when compacting tables
+
+Version 1.2.0 (2014-06-07)
+- Hearts of Iron 3 is now officially supported, a lot of map modes added
+- vastly improved speed of switching map modes
+- province id 0 which in HoI3 and Vic2 appears on the map and is used for lakes, is now properly recognized as water
+- debug mode "Prune" method now works
+- the program will now display waiting cursor during some time-consuming processes
+- province labels will not be refreshed when not necessary, cutting down time needed e.g. to switch map modes considerably
+- by default, all tables will process savegame data using multiple threads
+- generating colorcoded maps is now multithreaded too
+- updates to the parser
+- WPF Color Convert app added
+
+Version 1.0.0 (2014-05-15)
+- added experimental support for Victoria 2
+- SharpZipLib is replaced by DotNetZip component for ZIP support
+- fixed a major bug related to parsing uninitialized data (e.g. when adding a new game)
+- fixed a major bug related to support for flag tables in AAR files
+- fixed a minor bug in CE.Parser which in some circumstances omitted the final character of each line
+- minor additions to the logging component
+- games management window gets some fixes
+- only officially supported games are now shown in available games combo box in games management
+
+Version 0.9.1 Beta (2014-04-30)
+- there is now a hidden setting (via Configuration.xml) to freeze width and height of PNGs which graphs are exported to
+- the map (the whole world or only the visible portion) can now be exported to PNG file
+- the progress of reading a savegame file is now shown via progress bar in the status bar (parsing progress will be shown when CE Parser is brought to ver. 3)
+- it is now possible to specify colorscale for each map mode separately
+- minor refinements and fixes
+
+Version 0.9.0 Beta (2014-04-08)
+- added support for country and province flags
+- map will no longer refresh when clicked without reason (changing color scheme in some cases)
+- added a button to refresh map manually (and randomize color scheme, if applicable for the current map mode)
+- it is now possible to export graph area to an external PNF file.
+
+Version 0.8.2 Alpha (2014-03-24)
+- redone AAR storage methods that depending on circumstances, can result in AAR files being several times smaller (thus making loading/saving quicker)
+- a button is added to backstage menu that allows reverting settings to default values;
+- added a label that shows the current map mode;
+- general interface polish.
+
+Version 0.8.1 Alpha (2014-03-15)
+- fixed a bug where proper directory structure is not recreated on startup and the program crashes;
+- added extra handling for otherwise unhandled exceptions.
+
+Version 0.8.0 Alpha (2014-03-14)
+- initial release

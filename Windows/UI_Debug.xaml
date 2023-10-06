@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="Chronicle.UI_Debug"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Chronicle"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="300"
+             VisualTextRenderingMode="ClearType" RenderOptions.ClearTypeHint="Enabled">
+    <DockPanel>
+        <GroupBox Header="Folders" DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="65">
+            <Grid>
+                <ComboBox x:Name="cFolders" Margin="10,10,95,0" VerticalAlignment="Top" Height="25" SelectedIndex="0">
+                    <ComboBoxItem Content="Application"/>
+                    <ComboBoxItem Content="Roaming application data"/>
+                    <ComboBoxItem Content="Local application data"/>
+                </ComboBox>
+                <Button x:Name="bOpenFolder" Content="Open" Margin="0,10,10,8" HorizontalAlignment="Right" Width="80" Click="bOpenFolder_Click"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Cache" DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="120">
+            <Grid Margin="0,0,0,6">
+                <Label x:Name="lCacheTablesCount" Content="Cached tables: (-)" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                <Label x:Name="lCacheTablesSize" Content="Cached size: (-)" Margin="0,31,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                <Label x:Name="lLastRun" Content="Last run results: (-)" Margin="0,62,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Properties" DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="273">
+            <ListView x:Name="lProperties" HorizontalAlignment="Stretch" Height="242" Margin="5,5,5,-73" VerticalAlignment="Top">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="160">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" HorizontalAlignment="Right" TextAlignment="Right" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Value" DisplayMemberBinding="{Binding Value}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+        </GroupBox>
+
+    </DockPanel>
+</UserControl>

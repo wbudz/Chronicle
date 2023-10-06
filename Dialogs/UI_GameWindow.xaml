@@ -1,0 +1,41 @@
+﻿<Window x:Class="Chronicle.UI_GameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Chronicle"
+        mc:Ignorable="d"
+        Title="GameWindow" Width="500" SizeToContent="Height" Loaded="Window_Loaded">
+    <DockPanel LastChildFill="True">
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+            <Button x:Name="bOK" Content="OK" HorizontalAlignment="Left" Height="25" VerticalAlignment="Center" Width="75" Margin="5" IsDefault="True" Click="bOK_Click"/>
+            <Button x:Name="bCancel" Content="Cancel" HorizontalAlignment="Left" Height="25" VerticalAlignment="Center" Width="75" Margin="5" IsCancel="True" Click="bCancel_Click"/>
+        </StackPanel>
+        <Grid Margin="0,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Path" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="60" Margin="10,0,0,0"/>
+            <Label Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="60" Margin="10,0,0,0" Grid.Row="1"/>
+            <Label Content="Game" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="60" Margin="10,0,0,0" Grid.Row="2"/>
+            <Label Content="Maximum recording frequency" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="190" Margin="10,0,0,0" Grid.Row="3" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="tPath" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="10,2,0,0" Text="TextBox" VerticalAlignment="Top" Width="352" Grid.Row="0"/>
+            <TextBox x:Name="tName" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="10,2,0,0" Text="TextBox" VerticalAlignment="Top" Width="352" Grid.Row="1"/>
+            <ComboBox x:Name="bGame" Grid.Column="1" HorizontalAlignment="Left" Margin="10,2,0,0" Grid.Row="2" VerticalAlignment="Top" Width="352" Height="25"/>
+            <ComboBox x:Name="bAutosaveFrequency" Grid.Column="1" HorizontalAlignment="Left" Margin="120,2,0,0" Grid.Row="3" VerticalAlignment="Top" Width="242" Height="25"/>
+            <Button x:Name="bBrowse" Content="..." HorizontalAlignment="Left" Height="26" VerticalAlignment="Center" Width="30" IsDefault="True" Grid.Column="2" Margin="0,2" Click="bBrowse_Click"/>
+            <Label Content="Game list priority" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="190" Margin="10,0,0,0" Grid.Row="4" Grid.ColumnSpan="2"/>
+            <ComboBox x:Name="bGameListPriority" Grid.Column="1" HorizontalAlignment="Left" Margin="120,2,0,0" Grid.Row="4" VerticalAlignment="Top" Width="242" Height="25"/>
+
+        </Grid>
+    </DockPanel>
+</Window>

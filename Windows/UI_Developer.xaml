@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="Chronicle.UI_Developer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Chronicle"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="300"
+             VisualTextRenderingMode="ClearType" RenderOptions.ClearTypeHint="Enabled">
+    <UserControl.Resources>
+        <local:IsNotNullConverter x:Key="IsNotNullConverter" />
+    </UserControl.Resources>
+    <DockPanel>
+        <GroupBox Header="Scripts sets" DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top" MinHeight="50">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="120"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="bInstallNew" Content="Install new" HorizontalAlignment="Left" Margin="5,5,0,0" Grid.Row="0" VerticalAlignment="Top" Width="75" Height="24" Click="bInstallNew_Click"/>
+                <Button x:Name="bReloadScripts" Content="Recompile" HorizontalAlignment="Left" Margin="85,5,0,0" Grid.Row="0" VerticalAlignment="Top" Width="75" Height="24" Click="bReloadScripts_Click"/>
+                <Button x:Name="bOpenFolder" Content="Open folder" HorizontalAlignment="Left" Margin="165,5,0,0" VerticalAlignment="Top" Width="75" Height="24" Click="bOpenFolder_Click" 
+                        IsEnabled="{Binding ElementName=lSets, Path=SelectedItem, Converter={StaticResource IsNotNullConverter}}"/>
+                <ListView x:Name="lSets" Height="110" Margin="5,5,36,0" Grid.Row="1" VerticalAlignment="Top" SelectionChanged="lSets_SelectionChanged">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Enabled">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding IsEnabled}" Checked="ScriptSetCheckBox_Checked" Unchecked="ScriptSetCheckBox_Unchecked" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                            <GridViewColumn Header="Path" DisplayMemberBinding="{Binding Path}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <StackPanel x:Name="pRecompilationWarning" Grid.Row="2" Orientation="Horizontal" Margin="5,0,0,0" Visibility="Collapsed" Height="24">
+                    <Image Source="pack://application:,,,/Chronicle;component/icons/warning-16.png" Width="16" Height="16" />
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">Click 'Recompile' to apply changes.</TextBlock>
+                </StackPanel>
+                <Button x:Name="bMoveUp" Margin="0,5,5,0" Grid.Row="1" VerticalAlignment="Top" Height="24" IsEnabled="False" Click="bMoveUp_Click" HorizontalAlignment="Right" Width="26">
+                    <Image Source="pack://application:,,,/Chronicle;component/icons/up-16.png" Width="16"/>
+                </Button>
+                <Button x:Name="bMoveDown" Margin="0,34,5,0" Grid.Row="1" VerticalAlignment="Top" Height="24" IsEnabled="False" Click="bMoveDown_Click" HorizontalAlignment="Right" Width="26">
+                    <Image Source="pack://application:,,,/Chronicle;component/icons/down-16.png" Width="16"/>
+                </Button>
+                <Button x:Name="bRename" Margin="0,62,5,0" Grid.Row="1" VerticalAlignment="Top" Height="24"
+                        IsEnabled="{Binding ElementName=lSets, Path=SelectedItem, Converter={StaticResource IsNotNullConverter}}" Click="bRename_Click" HorizontalAlignment="Right" Width="26">
+                    <Image Source="pack://application:,,,/Chronicle;component/icons/rename-16.png" Width="16"/>
+                </Button>
+                <Button x:Name="bDelete" HorizontalAlignment="Right" Margin="0,91,5,0" Grid.Row="1" VerticalAlignment="Top" Width="26" Height="24" Click="bDelete_Click"
+                        IsEnabled="{Binding ElementName=lSets, Path=SelectedItem, Converter={StaticResource IsNotNullConverter}}">
+                    <Image Source="pack://application:,,,/Chronicle;component/icons/remove-16.png" Width="16"/>
+                </Button>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Compiled scripts" DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top" MinHeight="150" Height="228" >
+            <Grid>
+                <ListView x:Name="lCompiledScripts" Margin="5,5,5,30" SelectionChanged="lCompiledScripts_SelectionChanged">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Set" DisplayMemberBinding="{Binding Set}" />
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                            <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}"/>
+                            <GridViewColumn Header="Speed (ms)">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=Performance}" Background="{Binding PerformanceColor}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}"/>
+                            <GridViewColumn Header="Errors" DisplayMemberBinding="{Binding ErrorsCount}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <Button x:Name="bCode" Content="Display code" HorizontalAlignment="Left" Margin="5,181,0,0" VerticalAlignment="Top" Width="80" Click="bCode_Click"/>
+                <Button x:Name="bErrors" Content="Display errors" HorizontalAlignment="Left" Margin="90,181,0,0" VerticalAlignment="Top" Width="90" Click="bErrors_Click"/>
+            </Grid>
+        </GroupBox>
+    </DockPanel>
+</UserControl>

@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="Chronicle.UI_GraphSettings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Chronicle"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             VisualTextRenderingMode="ClearType" RenderOptions.ClearTypeHint="Enabled">
+    <GroupBox Header="Options" DockPanel.Dock="Top" Margin="5,0">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="130"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <Label x:Name="lDisplayedSeries" Content="Displayed data series" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="121"/>
+            <Label x:Name="lSeriesSelection" Content="Selection" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Height="26" Width="58"/>
+            <ComboBox x:Name="bDisplayedDataSeries" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="138" Margin="0,4,0,0" Height="22" SelectedIndex="7" SelectionChanged="GraphOptionsChange">
+                <ComboBoxItem>1</ComboBoxItem>
+                <ComboBoxItem>2</ComboBoxItem>
+                <ComboBoxItem>3</ComboBoxItem>
+                <ComboBoxItem>4</ComboBoxItem>
+                <ComboBoxItem>5</ComboBoxItem>
+                <ComboBoxItem>6</ComboBoxItem>
+                <ComboBoxItem>7</ComboBoxItem>
+                <ComboBoxItem>8</ComboBoxItem>
+                <ComboBoxItem>9</ComboBoxItem>
+                <ComboBoxItem>10</ComboBoxItem>
+            </ComboBox>
+            <ComboBox x:Name="bSeriesSelection" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="138" Margin="0,4,0,0" Grid.Row="1" Height="22" SelectedIndex="3" SelectionChanged="GraphOptionsChange">
+                <ComboBoxItem>Beginning best</ComboBoxItem>
+                <ComboBoxItem>Finish best</ComboBoxItem>
+                <ComboBoxItem>Average best</ComboBoxItem>
+                <ComboBoxItem>Mixed</ComboBoxItem>
+            </ComboBox>
+            <xctk:CheckListBox x:Name="bEnforcedProvinces" ItemSelectionChanged="GraphOptionsChange" Margin="5,10,10,10" Grid.Row="3" Grid.ColumnSpan="2"
+                VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.IsContainerVirtualizable="True" VirtualizingPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
+                    <xctk:CheckListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel />
+                        </ItemsPanelTemplate>
+                    </xctk:CheckListBox.ItemsPanel>
+                </xctk:CheckListBox>
+                <TextBlock x:Name="tEnforcedProvincesInGraphs" Margin="5"/>
+            <Button x:Name="bClearEnforcedProvinces" Margin="68,10,10,95" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Height="25" Click="bClearEnforcedProvinces_Click">Clear</Button>
+            <Label x:Name="lEnforcedProvinces" Content="Always display provinces:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" Height="26" Width="153" Margin="0,14,0,0" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+            <Label x:Name="lEnforcedCountries" Content="Always display countries:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="4" Height="26" Width="153" Grid.ColumnSpan="2" Margin="0,12,0,0" Grid.RowSpan="2"/>
+            <xctk:CheckListBox x:Name="bEnforcedCountries" ItemSelectionChanged="GraphOptionsChange" Margin="5,8,10,12" Grid.Row="5" Grid.ColumnSpan="2"
+                VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.IsContainerVirtualizable="True" VirtualizingPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
+                <xctk:CheckListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </xctk:CheckListBox.ItemsPanel>
+            </xctk:CheckListBox>
+            <Button x:Name="bClearEnforcedCountries" Margin="68,8,10,97" Grid.Column="1" Grid.Row="4" Content="Clear" Grid.RowSpan="2" Height="25" Click="bClearEnforcedCountries_Click"/>
+        </Grid>
+    </GroupBox>
+</UserControl>

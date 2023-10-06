@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="Chronicle.UI_Ribbon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+             xmlns:Chronicle="clr-namespace:Chronicle"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="1000"
+             VisualTextRenderingMode="ClearType" RenderOptions.ClearTypeHint="Enabled">
+    <Grid>
+        <Fluent:Ribbon SelectedTabChanged="Ribbon_SelectedTabChanged" RenderOptions.ClearTypeHint="Enabled">
+
+            <Fluent:Ribbon.Menu>
+                <Fluent:Backstage Name="Backstage" Header="File" IsOpenChanged="Backstage_IsOpenChanged">
+                    <Fluent:BackstageTabControl>
+                        <Fluent:Button x:Name="bNew" Header="New" Icon="pack://application:,,,/Chronicle;component/icons/new-16.png" Click="bNew_Click" />
+                        <Fluent:Button x:Name="bOpen" Header="Open" Icon="pack://application:,,,/Chronicle;component/icons/open-16.png" Click="bOpen_Click"/>
+                        <Fluent:Button x:Name="bSave" Header="Save" Icon="pack://application:,,,/Chronicle;component/icons/save-16.png" Click="bSave_Click"/>
+                        <Fluent:Button x:Name="bSaveAs" Header="Save As" Icon="pack://application:,,,/Chronicle;component/icons/saveas-16.png" Click="bSaveAs_Click"/>
+                        <Fluent:BackstageTabItem Header="Import">
+                            <Chronicle:UI_Import x:Name="UI_Import" FontWeight="Normal" />
+                        </Fluent:BackstageTabItem>
+                        <Fluent:BackstageTabItem Header="Mods">
+                            <Chronicle:UI_Mods x:Name="UI_Mods" FontWeight="Normal" />
+                        </Fluent:BackstageTabItem>
+                        <Fluent:BackstageTabItem Header="Update" >
+                            <Chronicle:UI_Update x:Name="UI_Update" FontWeight="Normal" />
+                        </Fluent:BackstageTabItem>
+                        <Fluent:BackstageTabItem Header="Options" >
+                            <Chronicle:UI_Options x:Name="UI_Options" FontWeight="Normal" />
+                        </Fluent:BackstageTabItem>
+                        <Fluent:BackstageTabItem Header="Help" >
+                            <Chronicle:UI_Help FontWeight="Normal" />
+                        </Fluent:BackstageTabItem>
+                        <Fluent:SeparatorTabItem Height="20" />
+                    </Fluent:BackstageTabControl>
+                </Fluent:Backstage>
+            </Fluent:Ribbon.Menu>
+
+            <Fluent:RibbonTabItem x:Name="MapRibbonTab" Header="Map">
+                <Fluent:RibbonGroupBox Header="Options">
+                    <Fluent:DropDownButton x:Name="bCaptions" Header="Captions" LargeIcon="pack://application:,,,/Chronicle;component/icons/map-options-32.png" DropDownOpened="bCaptions_DropDownOpened">
+                        <Fluent:MenuItem x:Name="mCaptionsNames" Header="Names" IsCheckable="True" GroupName="Captions" CanAddToQuickAccessToolBar="False" Click="bCaptionsDisplay_Click"/>
+                        <Fluent:MenuItem x:Name="mCaptionsIDs" Header="IDs" IsCheckable="True" Click="bCaptionsDisplay_Click" GroupName="Captions" CanAddToQuickAccessToolBar="False"/>
+                        <Fluent:MenuItem x:Name="mCaptionsValues" Header="Values" IsCheckable="True" Click="bCaptionsDisplay_Click" GroupName="Captions" CanAddToQuickAccessToolBar="False"/>
+                        <Fluent:MenuItem x:Name="mCaptionsNone" Header="None" IsCheckable="True" Click="bCaptionsDisplay_Click" GroupName="Captions" CanAddToQuickAccessToolBar="False"/>
+                    </Fluent:DropDownButton>
+                    <Fluent:DropDownButton x:Name="bBorders" Header="Borders" LargeIcon="pack://application:,,,/Chronicle;component/icons/borders-32.png" DropDownOpened="bBorders_DropDownOpened">
+                        <Fluent:MenuItem x:Name="mLandBorders" Header="Province land borders" IsCheckable="True" CanAddToQuickAccessToolBar="False" Click="bBordersDisplay_Click"/>
+                        <Fluent:MenuItem x:Name="mWaterBorders" Header="Province water borders" IsCheckable="True" Click="bBordersDisplay_Click" CanAddToQuickAccessToolBar="False"/>
+                        <Fluent:MenuItem x:Name="mShoreBorders" Header="Shore borders" IsCheckable="True" Click="bBordersDisplay_Click" CanAddToQuickAccessToolBar="False"/>
+                        <Fluent:GroupSeparatorMenuItem />
+                        <Fluent:MenuItem x:Name="mCountryBorders" Header="Country borders" IsCheckable="True" Click="bBordersDisplay_Click" CanAddToQuickAccessToolBar="False"/>
+                    </Fluent:DropDownButton>
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="Export">
+                    <Fluent:DropDownButton x:Name="bExportMap" Header="Static" LargeIcon="pack://application:,,,/Chronicle;component/icons/map-export-png-32.png" IsEnabled="False">
+                        <Fluent:MenuItem x:Name="mExportWholeMap" Header="Whole map" Click="mExportWholeMap_Click" />
+                        <Fluent:MenuItem x:Name="mExportVisiblePortion" Header="Visible part" Click="mExportVisiblePortion_Click"/>
+                    </Fluent:DropDownButton>
+                    <Fluent:Button x:Name="bExportAnimated" Header="Animated" LargeIcon="pack://application:,,,/Chronicle;component/icons/map-export-gif-32.png" Click="bExportAnimated_Click" IsEnabled="False">
+                    </Fluent:Button>
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+            <Fluent:RibbonTabItem x:Name="TablesRibbonTab" Header="Tables">
+                <Fluent:RibbonGroupBox Header="Type">
+                    <Fluent:ToggleButton Name="mSimpleTable" Header="Simple" LargeIcon="pack://application:,,,/Chronicle;component/icons/table-simple-32.png" IsChecked="True" GroupName="TableType" Click="mSimpleTable_Click" />
+                    <Fluent:ToggleButton Name="mAdvancedTable" Header="Advanced" LargeIcon="pack://application:,,,/Chronicle;component/icons/table-advanced-32.png" GroupName="TableType" Click="mSimpleTable_Click"/>
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="Export">
+                    <Fluent:Button x:Name="bExportTableClipboard" Header="Clipboard" LargeIcon="pack://application:,,,/Chronicle;component/icons/table-export-clipboard-32.png" Click="bExportTableClipboard_Click" IsEnabled="False" />
+                    <Fluent:Button x:Name="bExportTableFile" Header="File" LargeIcon="pack://application:,,,/Chronicle;component/icons/table-export-csv-32.png" Click="bExportTableFile_Click" IsEnabled="False" />
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+            <Fluent:RibbonTabItem x:Name="GraphsRibbonTab" Header="Graphs">
+                <Fluent:RibbonGroupBox Header="Export">
+                    <Fluent:Button x:Name="bExportGraphFile" Header="File" LargeIcon="pack://application:,,,/Chronicle;component/icons/map-export-png-32.png" Click="bExportGraphFile_Click" IsEnabled="False"/>
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+        </Fluent:Ribbon>
+    </Grid>
+
+    <UserControl.InputBindings>
+        <KeyBinding Command="New" Key="N" Modifiers="Ctrl"/>
+        <KeyBinding Command="Open" Key="O" Modifiers="Ctrl"/>
+        <KeyBinding Command="Save" Key="S" Modifiers="Ctrl"/>
+    </UserControl.InputBindings>
+
+    <UserControl.CommandBindings>
+        <CommandBinding Command="New" Executed="bNew_Click" />
+        <CommandBinding Command="Open" Executed="bOpen_Click" />
+        <CommandBinding Command="Save" Executed="bSave_Click" />
+    </UserControl.CommandBindings>
+</UserControl>

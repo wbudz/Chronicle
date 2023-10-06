@@ -1,0 +1,882 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4EBF8C03-7E76-42F8-81E6-BF313C1068BD}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Chronicle</RootNamespace>
+    <AssemblyName>Chronicle</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <AllowedReferenceRelatedFileExtensions>.pdb</AllowedReferenceRelatedFileExtensions>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>chronicle.ico</ApplicationIcon>
+  </PropertyGroup>
+  <!--<PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>-->
+  <PropertyGroup>
+    <TargetZone>Custom</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CEParser, Version=6.4.0.0, Culture=neutral, PublicKeyToken=512d73c11e05b8d6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CEParser\CEParser.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlzEx, Version=2.2.0.4, Culture=neutral, PublicKeyToken=f08b075e934b7045, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.2.2.0.4\lib\net45\ControlzEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetZip, Version=1.10.1.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fluent, Version=4.0.3.394, Culture=neutral, PublicKeyToken=3e436e32a8c5546f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fluent.Ribbon.4.0.3.394\lib\net45\Fluent.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OxyPlot, Version=2014.1.546.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Core.2014.1.546\lib\portable-net4+sl4+wp71+win8\OxyPlot.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OxyPlot.WindowsForms, Version=2014.1.546.0, Culture=neutral, PublicKeyToken=245eacd6b5d2d338, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.2014.1.546\lib\net45\OxyPlot.WindowsForms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OxyPlot.Wpf, Version=2014.1.546.0, Culture=neutral, PublicKeyToken=75e952ba404cdbb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.2014.1.546\lib\net45\OxyPlot.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OxyPlot.Xps, Version=2014.1.546.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.2014.1.546\lib\net45\OxyPlot.Xps.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.2.2.0.4\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WriteableBitmapEx.Wpf, Version=1.5.0.0, Culture=neutral, PublicKeyToken=50375ca6144f1c69, processorArchitecture=MSIL">
+      <HintPath>..\packages\WriteableBitmapEx.1.5.0.0\lib\net40\WriteableBitmapEx.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Backstage\UI_Help.xaml.cs">
+      <DependentUpon>UI_Help.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Backstage\UI_Mods.xaml.cs">
+      <DependentUpon>UI_Mods.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Backstage\UI_Import.xaml.cs">
+      <DependentUpon>UI_Import.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Backstage\UI_Update.xaml.cs">
+      <DependentUpon>UI_Update.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Backstage\UI_Options.xaml.cs">
+      <DependentUpon>UI_Options.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Colorscales\RandomColors.cs" />
+    <Compile Include="Colorscales\DiscretesDefinition.cs" />
+    <Compile Include="Colorscales\MultiGradientDefinition.cs" />
+    <Compile Include="Common\Cache.cs" />
+    <Compile Include="Common\Data.cs" />
+    <Compile Include="Common\Data.Record.cs" />
+    <Compile Include="Common\Datalist.cs" />
+    <Compile Include="Common\MultiDatakeyTable.cs" />
+    <Compile Include="Common\MultiValueTable.cs" />
+    <Compile Include="Common\SingleDatakeyTable.cs" />
+    <Compile Include="Common\SingleValueTable.cs" />
+    <Compile Include="Common\Table.cs" />
+    <Compile Include="Common\Tables.Default.cs" />
+    <Compile Include="Colorscales\Colorscale.cs" />
+    <Compile Include="Common\Tables.StatsData.cs" />
+    <Compile Include="Common\Tables.StatsPivot.cs" />
+    <Compile Include="Converters.cs" />
+    <Compile Include="Core\Converters.cs" />
+    <Compile Include="Core\Core.cs" />
+    <Compile Include="Core\Core.Dispatch.cs" />
+    <Compile Include="Core\Core.GIF.cs" />
+    <Compile Include="Core\Ext.cs" />
+    <Compile Include="Core\InputBox.xaml.cs">
+      <DependentUpon>InputBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Mod.cs" />
+    <Compile Include="Core\ModeInterfaceElement.cs" />
+    <Compile Include="Core\Core.Paths.cs" />
+    <Compile Include="Core\Core.Update.cs" />
+    <Compile Include="Core\Game.cs" />
+    <Compile Include="Core\GameDate.cs" />
+    <Compile Include="Core\InstalledGame.cs" />
+    <Compile Include="Core\InstalledGames.cs" />
+    <Compile Include="Core\Log.cs" />
+    <Compile Include="Core\LZWEncoder.cs" />
+    <Compile Include="Core\Settings.cs" />
+    <Compile Include="Colorscales\GradientDefinition.cs" />
+    <Compile Include="Defs\Blend.cs" />
+    <Compile Include="Defs\Borderdefs.cs" />
+    <Compile Include="Defs\Countrydefs.cs" />
+    <Compile Include="Defs\Gamedefs.cs" />
+    <Compile Include="Defs\Provincedefs.cs" />
+    <Compile Include="Defs\Riverdefs.cs" />
+    <Compile Include="Defs\Terraindefs.cs" />
+    <Compile Include="Dialogs\UI_NewTableScriptSet.xaml.cs">
+      <DependentUpon>UI_NewTableScriptSet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\UI_GameWindow.xaml.cs">
+      <DependentUpon>UI_GameWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicDefs\HoI4DynamicDefs.cs" />
+    <Compile Include="DynamicDefs\EU4DynamicDefs.cs" />
+    <Compile Include="DynamicDefs\CK2DynamicDefs.cs" />
+    <Compile Include="DynamicDefs\Vic2DynamicDefs.cs" />
+    <Compile Include="DynamicDefs\HoI3DynamicDefs.cs" />
+    <Compile Include="DynamicDefs\EU3DynamicDefs.cs" />
+    <Compile Include="DynamicDefs\DynamicDefs.cs" />
+    <Compile Include="Script\Chronicle.Default\ck2.Economic.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\ck2.General.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\ck2.Laws.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\ck2.Military.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\ck2.Personal.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\ck2.Political.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\ck2.Social.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\ck2.Technology.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\eu3.Development.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\eu3.Domestic.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\eu3.Economic.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\eu3.General.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\eu3.Military.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\eu3.Political.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\eu3.Religion.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\eu3.Trade.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\eu4.Development.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\eu4.Diplomatic.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\eu4.Domestic.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\eu4.General.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\eu4.Military.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\eu4.Political.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\eu4.Population.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\eu4.Religion.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\eu4.Score.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\eu4.Technology.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\eu4.Trade.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\hoi3.Buildings.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\hoi3.Diplomatic.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\hoi3.Domestic.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\hoi4.General.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\hoi3.General.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\hoi3.Military.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\hoi3.Political.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\hoi3.Resources.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\hoi3.Weather.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\vic2.Domestic.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\vic2.Economic.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\vic2.Factories.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\vic2.General.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\vic2.Military.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\vic2.Political.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\vic2.Population.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\vic2.Taxes.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\vic2.Technology.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Script\Chronicle.Default\vic2.Trade.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="TableScriptSet.cs" />
+    <Compile Include="TableScripts.cs" />
+    <Compile Include="TableScript.cs" />
+    <Compile Include="SortableListView.cs" />
+    <Compile Include="StatsSource.cs" />
+    <Compile Include="Common\Tables.cs" />
+    <Compile Include="Common\Data.LoadSavegameData.cs" />
+    <Compile Include="Common\Data.LoadGameData.cs" />
+    <Compile Include="Common\Data.EnumerateSavegames.cs" />
+    <Compile Include="Script\Chronicle.Default\eu4.Economic.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="UI_Graphview.xaml.cs">
+      <DependentUpon>UI_Graphview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI_Tableview.xaml.cs">
+      <DependentUpon>UI_Tableview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI_Mapview.xaml.cs">
+      <DependentUpon>UI_Mapview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI_Ribbon.xaml.cs">
+      <DependentUpon>UI_Ribbon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UI_TableSettings.xaml.cs">
+      <DependentUpon>UI_TableSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UI_MapColors.xaml.cs">
+      <DependentUpon>UI_MapColors.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UI_MapStats.xaml.cs">
+      <DependentUpon>UI_MapStats.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UI_Debug.xaml.cs">
+      <DependentUpon>UI_Debug.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UI_GraphSettings.xaml.cs">
+      <DependentUpon>UI_GraphSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UI_Developer.xaml.cs">
+      <DependentUpon>UI_Developer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UI_Log.xaml.cs">
+      <DependentUpon>UI_Log.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UI_MapControl.xaml.cs">
+      <DependentUpon>UI_MapControl.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Backstage\UI_Help.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Backstage\UI_Mods.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Backstage\UI_Import.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Backstage\UI_Update.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Backstage\UI_Options.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Core\InputBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\UI_NewTableScriptSet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\UI_GameWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="UI_Graphview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI_Tableview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI_Mapview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI_Ribbon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UI_TableSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\UI_MapColors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\UI_MapStats.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\UI_Debug.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\UI_GraphSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\UI_Developer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\UI_Log.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\UI_MapControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="..\..\CEParser\ck2bin.csv">
+      <Link>ck2bin.csv</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\CEParser\eu4bin.csv">
+      <Link>eu4bin.csv</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\CEParser\hoi4bin.csv">
+      <Link>hoi4bin.csv</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="app.manifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Manual.docx" />
+    <None Include="Manual.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="CEBitmap\CEBitmap.csproj">
+      <Project>{ff4bd226-3b2f-4853-8d9d-f33628eb56e9}</Project>
+      <Name>CEBitmap</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\borders-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\map-export-gif-32.png" />
+    <Resource Include="Icons\map-export-png-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\map-options-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\windows-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\hide-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\left-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\right-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="chronicle.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\copy-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="GameIcons\ck2-32.png" />
+    <Resource Include="GameIcons\eu3-32.png" />
+    <Resource Include="GameIcons\eu4-32.png" />
+    <Resource Include="GameIcons\hoi3-32.png" />
+    <Resource Include="GameIcons\hoi3tfh-32.png" />
+    <Resource Include="GameIcons\vic2-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\new-16.png" />
+    <Resource Include="Icons\open-16.png" />
+    <Resource Include="Icons\save-16.png" />
+    <Resource Include="Icons\saveas-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\zoomin-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\zoomout-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\zoomfit-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\zoom100-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\add-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\edit-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\remove-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\delete-16.png" />
+    <Resource Include="Icons\steam-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="GameIcons\ck2-16.png" />
+    <Resource Include="GameIcons\eu3-16.png" />
+    <Resource Include="GameIcons\eu4-16.png" />
+    <Resource Include="GameIcons\hoi3-16.png" />
+    <Resource Include="GameIcons\hoi3tfh-16.png" />
+    <Resource Include="GameIcons\vic2-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\zipped-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\binary-16.png" />
+    <Resource Include="Icons\text-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\unzipped-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\record-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\stop-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\table-advanced-32.png" />
+    <Resource Include="Icons\table-export-clipboard-32.png" />
+    <Resource Include="Icons\table-export-csv-32.png" />
+    <Resource Include="Icons\table-options-32.png" />
+    <Resource Include="Icons\table-simple-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\mode-country-16.png" />
+    <Resource Include="Icons\mode-province-16.png" />
+    <Resource Include="Icons\mode-special-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\chronicle_tag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Colors.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\play-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Changelog.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Script\Chronicle.Default\ck2.Economic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\ck2.General.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\ck2.Laws.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\ck2.Military.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\ck2.Personal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\ck2.Political.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\ck2.Social.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\ck2.Technology.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\eu3.Development.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\eu3.Domestic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\eu3.Economic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\eu3.General.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\eu3.Military.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\eu3.Political.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\eu3.Religion.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\eu3.Trade.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\eu4.Development.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\eu4.Diplomatic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\eu4.Domestic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\eu4.Economic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\eu4.General.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\eu4.Military.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\eu4.Political.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\eu4.Population.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\eu4.Religion.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\eu4.Score.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\eu4.Technology.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\eu4.Trade.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\hoi3.Buildings.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\hoi3.Diplomatic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\hoi3.Domestic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\hoi3.General.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\hoi3.Military.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\hoi3.Political.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\hoi3.Resources.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\hoi3.Weather.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\vic2.Domestic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\vic2.Economic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\vic2.Factories.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\vic2.General.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\vic2.Military.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\vic2.Political.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\vic2.Population.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\vic2.Taxes.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\vic2.Technology.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Script\Chronicle.Default\vic2.Trade.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\pause-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\rename-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\down-16.png" />
+    <Resource Include="Icons\up-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\warning-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="GameIcons\hoi4-16.png" />
+    <Resource Include="GameIcons\hoi4-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Script\Chronicle.Default\hoi4.General.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="Chronicle.UI_Help"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Chronicle="clr-namespace:Chronicle"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="400" Loaded="UserControl_Loaded">
+    <DockPanel LastChildFill="True" Margin="10" >
+        <GroupBox DockPanel.Dock="Top" Header="Help" Height="64" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="bHelp" Content="Help" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="bHelp_Click"/>
+                <Button x:Name="bChangelog" Content="Changelog" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="bChangelog_Click"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="About">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="60*"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="60*"/>
+                </Grid.RowDefinitions>
+                <Label Content="Chronicle" Grid.Row="0" Margin="5,0" FontWeight="Bold" />
+                <Label Content="Witold Budziszewski, 2014-2017" Grid.Row="1" Margin="5,0" />
+                <Label x:Name="lVersion" Content="Version x" Grid.Row="2" Margin="5,0" />
+                <TextBox x:Name="textBox" Margin="5" Grid.Row="3" TextWrapping="Wrap" Text="All trademarks are property of their respective owners. Clausewitz Engine and names of programs, when presented in the program and documentation, are used for informative purposes only. The program is not related in any way to Paradox Interactive AB or any of its affiliates.&#x0a;&#x0a;The program decodes binary savegame files with routines and token lists partially based on the work of PreXident and other contributors for Java Savegame Replayer utility (https://forum.paradoxplaza.com/forum/index.php?threads/utility-java-save-game-replayer.722493/)&#x0a;&#x0a;Special thanks go to:&#x0a;- PreXident for publishing his program code which made decoding content of binary saves much easier;&#x0a;- Lucifer for his invaluable help with DH Companion which experience eventually helped me to make this program as well." VerticalScrollBarVisibility="Visible"/>
+                <Label Content="List of components:" Grid.Row="4" Margin="5,0" />
+                <ListView x:Name="lComponents" Margin="5" Grid.Row="5" VerticalAlignment="Top" Width="400" HorizontalAlignment="Left">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                            <GridViewColumn Header="Website" DisplayMemberBinding="{Binding Website}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </GroupBox>
+    </DockPanel>
+</UserControl>

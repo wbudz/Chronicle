@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Chronicle.UI_Tableview"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Chronicle="clr-namespace:Chronicle" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"             
+             xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
+             mc:Ignorable="d" >
+    <DockPanel LastChildFill="True">
+        <StackPanel Height="60" DockPanel.Dock="Top" Orientation="Horizontal">
+            <TextBlock x:Name="tSelectedTable" Margin="5" Text="(none selected)"/>
+        </StackPanel>
+
+        <xcdg:DataGridControl Name="Stats" ItemsSource="{Binding s}" AutoCreateColumns="False" ReadOnly="True">
+            <xcdg:DataGridControl.View>
+                <xcdg:TableflowView UseDefaultHeadersFooters="False">
+                    <xcdg:TableflowView.FixedHeaders>
+                        <!--<DataTemplate>
+                            <xcdg:ColumnManagerRow />
+                        </DataTemplate>-->
+                        <DataTemplate>
+                            <xcdg:GroupByControl Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
+                        </DataTemplate>
+                        <DataTemplate>
+                            <xcdg:ColumnManagerRow AllowSort="True" />
+                        </DataTemplate>
+                    </xcdg:TableflowView.FixedHeaders>
+                    <xcdg:TableflowView.Theme>
+                        <xcdg:Windows8Theme/>
+                    </xcdg:TableflowView.Theme>
+                </xcdg:TableflowView>
+            </xcdg:DataGridControl.View>
+            <xcdg:DataGridControl.Columns>
+            </xcdg:DataGridControl.Columns>
+        </xcdg:DataGridControl>
+    </DockPanel>
+</UserControl>

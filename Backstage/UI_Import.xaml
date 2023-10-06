@@ -1,0 +1,176 @@
+﻿<UserControl x:Class="Chronicle.UI_Import"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:Chronicle="clr-namespace:Chronicle"
+             mc:Ignorable="d" d:DesignHeight="560" Loaded="UserControl_Loaded">
+
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="BinaryCellTemplate">
+                <StackPanel Orientation="Horizontal" Margin="2,0,2,0" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <Image Source="{Binding BinaryIcon}" Width="16" Height="16" Stretch="None"  />
+                    <Label Content="{Binding BinaryText}" HorizontalAlignment="Center" />
+                </StackPanel>
+            </DataTemplate>
+            <DataTemplate x:Key="ZippedCellTemplate">
+                <StackPanel Orientation="Horizontal" Margin="2,0,2,0" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <Image Source="{Binding ZippedIcon}" Width="16" Height="16" Stretch="None"  />
+                    <Label Content="{Binding ZippedText}" />
+                </StackPanel>
+            </DataTemplate>
+
+            <Style x:Key="RightAlignmentStyle" TargetType="GridViewColumnHeader">
+                <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            </Style>
+            <Style x:Key="CenterAlignmentStyle" TargetType="GridViewColumnHeader">
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            </Style>
+
+            <DataTemplate x:Key="HeaderTemplateArrowUp">
+                <DockPanel LastChildFill="True" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type GridViewColumnHeader}}}">
+                    <Path x:Name="arrowUp" StrokeThickness="1" Fill="Gray" Data="M 5,10 L 15,10 L 10,5 L 5,10" DockPanel.Dock="Right" Width="20" HorizontalAlignment="Right" Margin="5,0,5,0" SnapsToDevicePixels="True"/>
+                    <TextBlock Text="{Binding }" />
+                </DockPanel>
+            </DataTemplate>
+
+            <DataTemplate x:Key="HeaderTemplateArrowDown">
+                <DockPanel LastChildFill="True" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type GridViewColumnHeader}}}">
+                    <Path x:Name="arrowDown" StrokeThickness="1" Fill="Gray"  Data="M 5,5 L 10,10 L 15,5 L 5,5" DockPanel.Dock="Right" Width="20" HorizontalAlignment="Right" Margin="5,0,5,0" SnapsToDevicePixels="True"/>
+                    <TextBlock Text="{Binding }" />
+                </DockPanel>
+            </DataTemplate>
+
+            <Chronicle:GameDateToStringConverter x:Key="GameDateToStringConverter" />
+
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+
+    <DockPanel Margin="10" LastChildFill="True">
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Left">
+            <Button x:Name="bRevert" Content="Revert" Width="100" Height="25" VerticalAlignment="Bottom" Click="bRevert_Click" />
+        </StackPanel>
+        <DockPanel LastChildFill="True" >
+            <GroupBox DockPanel.Dock="Top" Header="Games" Height="145" VerticalAlignment="Top" Background="White" Margin="0,0,0,5">
+                <Grid Margin="5,5,5,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="lNoGamesDefined" Content="No games are defined. Use buttons on the right to set up your game library." />
+                    <ScrollViewer BorderBrush="#FF828790" BorderThickness="1,1,0,1" VerticalScrollBarVisibility="Hidden" Margin="0,-5,10,0">
+                        <xctk:WrapPanel x:Name="pGames" Margin="10" DefaultAnimationRate="5"/>
+                    </ScrollViewer>
+                    <Button x:Name="bAddGame" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="100" Height="25" Click="bAddGame_Click">
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Source="/Chronicle;component/icons/add-16.png" Stretch="None" />
+                            <TextBlock Margin="5,0,2,0" Text="Add"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="bEditGame" Grid.Column="1" HorizontalAlignment="Left" Margin="0,29,0,0" VerticalAlignment="Top" Width="100" Height="25" Click="bEditGame_Click">
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Source="/Chronicle;component/icons/edit-16.png" Stretch="None" />
+                            <TextBlock Margin="5,0,2,0" Text="Edit"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="bRemoveGame" Grid.Column="1" HorizontalAlignment="Left" Margin="0,58,0,0" VerticalAlignment="Top" Width="100" Height="25" Click="bRemoveGame_Click">
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Source="/Chronicle;component/icons/remove-16.png" Stretch="None" />
+                            <TextBlock Margin="5,0,2,0" Text="Remove"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="bImport" Grid.Column="1" Margin="0,87,0,0" VerticalAlignment="Top" Height="25" Click="bImport_Click" HorizontalAlignment="Left" Width="100">
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Source="/Chronicle;component/icons/steam-16.png" Stretch="None" />
+                            <TextBlock Margin="5,0,2,0" Text="Import"/>
+                        </StackPanel>
+                    </Button>
+
+                </Grid>
+            </GroupBox>
+            <GroupBox DockPanel.Dock="Top" Header="Record" Background="White" Margin="0,0,0,5">
+                <Grid Margin="15,5,5,5">
+                    <Button x:Name="bStartRecording" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="100" Height="25" Click="bStartRecording_Click" IsEnabled="False">
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Source="/Chronicle;component/icons/record-16.png" Stretch="None" />
+                            <TextBlock Margin="5,0,2,0" Text="Start"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="bStopRecording" HorizontalAlignment="Left" Margin="105,0,0,0" VerticalAlignment="Top" Width="100" Height="25" Click="bStopRecording_Click" IsEnabled="False">
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Source="/Chronicle;component/icons/stop-16.png" Stretch="None" />
+                            <TextBlock Margin="5,0,2,0" Text="Stop"/>
+                        </StackPanel>
+                    </Button>
+                    <Label x:Name="lRecording" Content="No savegame folders are currently being monitored." HorizontalAlignment="Left" Margin="210,-1,0,0" VerticalAlignment="Top" Width="434"/>
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="Savegames" Background="White" Margin="0,0,0,10">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="120"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="120"/>
+                    </Grid.ColumnDefinitions>
+                    <Chronicle:SortableListView x:Name="lSavegames" Margin="5" BorderBrush="#FF828790" GridViewColumnHeader.Click="SortableListViewColumnHeaderClicked" SelectionChanged="lSavegames_SelectionChanged" MouseDoubleClick="lSavegames_MouseDoubleClick" Grid.RowSpan="2">
+                        <Chronicle:SortableListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Name" Width="Auto" DisplayMemberBinding="{Binding Name}"/>
+                                <GridViewColumn Header="Binary" Width="Auto" CellTemplate="{DynamicResource BinaryCellTemplate}"/>
+                                <GridViewColumn Header="Zipped" Width="Auto" CellTemplate="{DynamicResource ZippedCellTemplate}" />
+                                <GridViewColumn Header="Last saved" Width="Auto" DisplayMemberBinding="{Binding LastSaved}" />
+                                <GridViewColumn Header="Game date" Width="Auto" DisplayMemberBinding="{Binding GameDate, Converter={StaticResource GameDateToStringConverter}}" />
+                                <GridViewColumn Header="Path" Width="300" DisplayMemberBinding="{Binding Path}"/>
+                            </GridView>
+                        </Chronicle:SortableListView.View>
+                    </Chronicle:SortableListView>
+                    <GroupBox Grid.Column="1" Header="Selection" HorizontalAlignment="Left" VerticalAlignment="Top" Height="120" Width="120" Margin="0,-5,0,0">
+                        <StackPanel>
+                            <Button x:Name="bLoadSavegame" Grid.Column="1" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="100" Height="25" Click="bLoadSavegame_Click" IsEnabled="False">
+                                <StackPanel Orientation="Horizontal" >
+                                    <Image Source="/Chronicle;component/icons/add-16.png" Stretch="None" />
+                                    <TextBlock Margin="5,0,2,0" Text="Import"/>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="bImportSavegame" Grid.Column="1" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalAlignment="Top" Width="100" Height="25" Click="bImportSavegame_Click" IsEnabled="False">
+                                <StackPanel Orientation="Horizontal" >
+                                    <Image Source="/Chronicle;component/icons/add-16.png" Stretch="None" />
+                                    <TextBlock Margin="5,0,2,0" Text="Import (add)"/>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="bDeleteSavegame" Grid.Column="1" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalAlignment="Top" Width="100" Height="25" IsEnabled="False" Click="bDeleteSavegame_Click">
+                                <StackPanel Orientation="Horizontal" >
+                                    <Image Source="/Chronicle;component/icons/delete-16.png" Stretch="None" />
+                                    <TextBlock Margin="5,0,2,0" Text="Delete"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Grid.Row="1" Grid.Column="1" Header="From disk" HorizontalAlignment="Left" VerticalAlignment="Top" Height="90" Width="120" Margin="0,-5,0,0">
+                        <StackPanel>
+                            <Button x:Name="bLoadSavegameFromDisk" Grid.Column="1" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="100" Height="25" IsEnabled="False" Click="bLoadSavegameFromDisk_Click">
+                                <StackPanel Orientation="Horizontal" >
+                                    <Image Source="/Chronicle;component/icons/add-16.png" Stretch="None" />
+                                    <TextBlock Margin="5,0,2,0" Text="Import"/>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="bImportSavegameFromDisk" Grid.Column="1" HorizontalAlignment="Left" Margin="4,5,0,0" VerticalAlignment="Top" Width="100" Height="25" IsEnabled="False" Click="bImportSavegameFromDisk_Click">
+                                <StackPanel Orientation="Horizontal" >
+                                    <Image Source="/Chronicle;component/icons/add-16.png" Stretch="None" />
+                                    <TextBlock Margin="5,0,2,0" Text="Import (add)"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </GroupBox>
+                </Grid>
+            </GroupBox>
+        </DockPanel>
+    </DockPanel>
+</UserControl>

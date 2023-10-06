@@ -1,0 +1,140 @@
+﻿<UserControl x:Class="Chronicle.UI_MapColors"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Chronicle"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+             mc:Ignorable="d" 
+             d:DesignHeight="499.21" d:DesignWidth="300"
+             VisualTextRenderingMode="ClearType" RenderOptions.ClearTypeHint="Enabled">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Margin="5">
+            <Button x:Name="bResetColors" Content="Reset" HorizontalAlignment="Right" Width="75" Height="25" Click="bResetColors_Click" Visibility="Collapsed" />
+        </StackPanel>
+        <GroupBox x:Name="gLandProvinces" Header="Land provinces" DockPanel.Dock="Top" Visibility="Collapsed">
+            <DockPanel x:Name="pLandColorscale" LastChildFill="True" Margin="5">
+                <DockPanel LastChildFill="True" DockPanel.Dock="Top">
+                    <TextBlock x:Name="lMapModeMinColor" Text="0" Margin="5" DockPanel.Dock="Left"/>
+                    <TextBlock x:Name="lMapModeMaxColor" Text="100" Margin="5" DockPanel.Dock="Right"/>
+                    <Rectangle x:Name="rMapModeColorscale" Margin="5" Height="16" >
+                        <Rectangle.Fill>
+                            <LinearGradientBrush>
+                                <GradientStop Color="Black"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </DockPanel>
+                <StackPanel Orientation="Vertical" FlowDirection="LeftToRight">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="22" />
+                            <ColumnDefinition Width="110" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Grid.Column="1" Content="Low value color" Margin="0,2,0,2" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        <xctk:ColorPicker x:Name="cpLowLandColorscale" Grid.Row="0" Grid.Column="2"  Margin="0,2,0,2" VerticalAlignment="Center" UsingAlphaChannel="False" ColorMode="ColorCanvas" Height="25" SelectedColorChanged="cpColorscale_SelectedColorChanged"/>
+                        <CheckBox x:Name="cIntermediateColorLandColorscale" Grid.Row="1" Grid.Column="0"  Margin="5,2,0,2" VerticalAlignment="Center" Checked="cColorscale_Checked" Unchecked="cColorscale_Checked" />
+                        <Label Grid.Row="1" Grid.Column="1" Content="Intermediate color" Margin="0,2,0,2" VerticalAlignment="Center" IsEnabled="{Binding ElementName=cIntermediateColorLandColorscale, Path=IsChecked}" HorizontalAlignment="Right"/>
+                        <xctk:ColorPicker x:Name="cpMidLandColorscale" Grid.Row="1" Grid.Column="2"  Margin="0,2,0,2" VerticalAlignment="Center" IsEnabled="{Binding ElementName=cIntermediateColorLandColorscale, Path=IsChecked}" UsingAlphaChannel="False" ColorMode="ColorCanvas" Height="25" SelectedColorChanged="cpColorscale_SelectedColorChanged"/>
+                        <Label Content="High value color" Grid.Row="2" Grid.Column="1"  Margin="0,2,0,2" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        <xctk:ColorPicker x:Name="cpHighLandColorscale" Grid.Row="2" Grid.Column="2"  Margin="0,2,0,2" VerticalAlignment="Center" UsingAlphaChannel="False" ColorMode="ColorCanvas" Height="25" SelectedColorChanged="cpColorscale_SelectedColorChanged"/>
+                        <Label Content="Exponentiality" Margin="0,2,0,2" Grid.Row="3" Grid.Column="1"  HorizontalAlignment="Right" />
+                        <ComboBox x:Name="cLandColorscaleExponentiality" Grid.Row="3" Grid.Column="2" Margin="0,2,0,2" Height="25" SelectionChanged="cExponentiality_SelectionChanged">
+                            <TextBlock Text="High values (128)"/>
+                            <TextBlock Text="High values (64)"/>
+                            <TextBlock Text="High values (32)"/>
+                            <TextBlock Text="High values (16)"/>
+                            <TextBlock Text="High values (8)"/>
+                            <TextBlock Text="High values (4)"/>
+                            <TextBlock Text="High values (2)"/>
+                            <TextBlock Text="Linear"/>
+                            <TextBlock Text="Low values (2)"/>
+                            <TextBlock Text="Low values (4)"/>
+                            <TextBlock Text="Low values (8)"/>
+                            <TextBlock Text="Low values (16)"/>
+                            <TextBlock Text="Low values (32)"/>
+                            <TextBlock Text="Low values (64)"/>
+                            <TextBlock Text="Low values (128)"/>
+                        </ComboBox>
+                    </Grid>
+                </StackPanel>
+            </DockPanel>
+        </GroupBox>
+
+        <GroupBox x:Name="gWaterProvinces" Header="Water provinces" DockPanel.Dock="Top" Visibility="Collapsed">
+            <DockPanel x:Name="pWaterColorscale" LastChildFill="True" Margin="5">
+                <DockPanel LastChildFill="True" DockPanel.Dock="Top">
+                    <TextBlock x:Name="lMapModeMinColorW" Text="0" Margin="5" DockPanel.Dock="Left"/>
+                    <TextBlock x:Name="lMapModeMaxColorW" Text="100" Margin="5" DockPanel.Dock="Right"/>
+                    <Rectangle x:Name="rMapModeColorscaleW" Margin="5" Height="16" >
+                        <Rectangle.Fill>
+                            <LinearGradientBrush>
+                                <GradientStop Color="Black"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </DockPanel>
+                <StackPanel Orientation="Vertical" FlowDirection="LeftToRight">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="22" />
+                            <ColumnDefinition Width="110" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Grid.Column="1" Content="Low value color" Margin="0,2,0,2" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        <xctk:ColorPicker x:Name="cpLowWaterColorscale" Grid.Row="0" Grid.Column="2"  Margin="0,2,0,2" VerticalAlignment="Center" UsingAlphaChannel="False" ColorMode="ColorCanvas" Height="25" SelectedColorChanged="cpColorscale_SelectedColorChanged"/>
+                        <CheckBox x:Name="cIntermediateColorWaterColorscale" Grid.Row="1" Grid.Column="0"  Margin="5,2,0,2" VerticalAlignment="Center" Checked="cColorscale_Checked" Unchecked="cColorscale_Checked" />
+                        <Label Grid.Row="1" Grid.Column="1" Content="Intermediate color" Margin="0,2,0,2" VerticalAlignment="Center" IsEnabled="{Binding ElementName=cIntermediateColorWaterColorscale, Path=IsChecked}" HorizontalAlignment="Right"/>
+                        <xctk:ColorPicker x:Name="cpMidWaterColorscale" Grid.Row="1" Grid.Column="2"  Margin="0,2,0,2" VerticalAlignment="Center" IsEnabled="{Binding ElementName=cIntermediateColorWaterColorscale, Path=IsChecked}" UsingAlphaChannel="False" ColorMode="ColorCanvas" Height="25" SelectedColorChanged="cpColorscale_SelectedColorChanged"/>
+                        <Label Content="High value color" Grid.Row="2" Grid.Column="1"  Margin="0,2,0,2" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        <xctk:ColorPicker x:Name="cpHighWaterColorscale" Grid.Row="2" Grid.Column="2"  Margin="0,2,0,2" VerticalAlignment="Center" UsingAlphaChannel="False" ColorMode="ColorCanvas" Height="25" SelectedColorChanged="cpColorscale_SelectedColorChanged"/>
+                        <Label Content="Exponentiality" Margin="0,2,0,2" Grid.Row="3" Grid.Column="1"  HorizontalAlignment="Right" />
+                        <ComboBox x:Name="cWaterColorscaleExponentiality" Grid.Row="3" Grid.Column="2" Margin="0,2,0,2" Height="25" SelectionChanged="cExponentiality_SelectionChanged">
+                            <TextBlock Text="High values (128)"/>
+                            <TextBlock Text="High values (64)"/>
+                            <TextBlock Text="High values (32)"/>
+                            <TextBlock Text="High values (16)"/>
+                            <TextBlock Text="High values (8)"/>
+                            <TextBlock Text="High values (4)"/>
+                            <TextBlock Text="High values (2)"/>
+                            <TextBlock Text="Linear"/>
+                            <TextBlock Text="Low values (2)"/>
+                            <TextBlock Text="Low values (4)"/>
+                            <TextBlock Text="Low values (8)"/>
+                            <TextBlock Text="Low values (16)"/>
+                            <TextBlock Text="Low values (32)"/>
+                            <TextBlock Text="Low values (64)"/>
+                            <TextBlock Text="Low values (128)"/>
+                        </ComboBox>
+                    </Grid>
+                </StackPanel>
+            </DockPanel>
+        </GroupBox>
+
+        <GroupBox x:Name="gDiscreteColors" Header="Colors" DockPanel.Dock="Top" Visibility="Collapsed">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="pDiscreteColors" Margin="5">
+
+                </StackPanel>
+            </ScrollViewer>
+        </GroupBox>
+
+    </DockPanel>
+</UserControl>

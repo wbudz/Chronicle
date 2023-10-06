@@ -1,0 +1,3 @@
+# README #
+
+This is repository for Chronicle utility. Chronicle is designed to read, parse and display information stored in savegame files for several Paradox Interactive games (Europa Universalis IV, Hearts of Iron IV, etc.). Data is presented on maps, in tables and graphs. It can be saved or further exported as graphics or CSV tables. Multiple points of time are supported so that time-based progression of various statistics can be presented. Savegames (autosaves) can be listened to in the background as the game progresses which is an easy way to acquire long time-series for the program to show.

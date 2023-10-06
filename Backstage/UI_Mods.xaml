@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="Chronicle.UI_Mods"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:Chronicle="clr-namespace:Chronicle"
+             mc:Ignorable="d" d:DesignHeight="317.479" Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <Chronicle:IsGreaterThanConverter x:Key="IsGreaterThanConverter" />
+        <Chronicle:IsGreaterOrEqualThanConverter x:Key="IsGreaterOrEqualThanConverter" />
+    </UserControl.Resources>
+    <DockPanel Margin="10" LastChildFill="True">
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Left">
+            <Button x:Name="bRevert" Content="Revert" Width="100" Height="25" VerticalAlignment="Bottom" />
+        </StackPanel>
+        <DockPanel LastChildFill="True" >
+            <GroupBox DockPanel.Dock="Top" Header="Games" VerticalAlignment="Top" Background="White" Margin="0,0,0,10">
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label Margin="0,0,10,0">Game</Label>
+                    <ComboBox x:Name="cGames" Width="200" SelectionChanged="cGames_SelectionChanged"></ComboBox>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Mods" Background="White" Margin="0,0,0,10">
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <RadioButton x:Name="rAutomaticallySelectMods" Margin="0,5" Content="Automatically select mods" Checked="rAutomaticallySelectMods_Checked" Unchecked="rAutomaticallySelectMods_Checked">
+                        <RadioButton.Style>
+                            <Style TargetType="RadioButton">                                
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=cGames, Path=SelectedIndex, Converter={StaticResource IsGreaterOrEqualThanConverter}, ConverterParameter=0}" Value="False">
+                                        <Setter Property="IsEnabled" Value="False" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </RadioButton.Style>
+                    </RadioButton>
+                    <RadioButton x:Name="rLoadSelectedMods" Margin="0,0,0,5" IsEnabled="{Binding ElementName=rAutomaticallySelectMods, Path=IsEnabled}" Content="Always load selected mods:" Checked="rLoadSelectedMods_Checked" Unchecked="rLoadSelectedMods_Checked">
+                    </RadioButton>
+                    <xctk:CheckListBox x:Name="lMods" MinHeight="100" IsEnabled="{Binding IsChecked, ElementName=rLoadSelectedMods}" ItemSelectionChanged="lMods_ItemSelectionChanged"/>
+                </StackPanel>
+            </GroupBox>
+        </DockPanel>
+    </DockPanel>
+</UserControl>
